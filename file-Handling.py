@@ -1,11 +1,27 @@
 import os
-def walkDIR(folder_path):
+def walkDIR(folder_path, include=None):
+    r"""
+    Lists all files in the given folder, including those in subfolders. 
+    Optionally filters files by extensions.
+    Parameters:
+        folder_path (str): The path to the folder to search.
+        include (list of str, optional): A list of file extensions to include (e.g., ['.txt', '.jpg']).
+                                         If None, all files are included.
+    Returns:
+        list: A list of full file paths that match the criteria.
+    Example:
+        datadir = "path_to_your_folder"
+        files = walkDIR(datadir, include=['.png', '.jpeg', '.jpg'])
+    """
+    
     file_list = []
     for root, _, files in os.walk(folder_path):
         for file in files:
-            file_list.append(os.path.join(root, file))
+            if include is None or any(file.endswith(ext) for ext in include):
+                file_list.append(os.path.join(root, file))
     print("Files found:", len(file_list))
     return file_list
+
 
 
 import os, shutil
