@@ -20,3 +20,12 @@ def format_time(t1, t2):
         minutes = remainder // 60
         seconds = remainder % 60
         return f"{days:.0f} days {hours:.0f} hours {minutes:.0f} minutes {seconds:.2f} seconds"
+
+
+def get_cuda_cores():
+    device = torch.cuda.current_device()
+    compute_capability = torch.cuda.get_device_capability(device)
+    cores_per_sm = {2: 32, 3: 192, 5: 128, 6: 64, 7: 64, 8: 64}  # cores per streaming multiprocessor
+    sm_count = torch.cuda.get_device_properties(device).multi_processor_count
+    cores = sm_count * cores_per_sm[compute_capability[0]]
+    return cores
