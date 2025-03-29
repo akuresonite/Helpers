@@ -7,7 +7,13 @@ from torchview import draw_graph
 import graphviz
 graphviz.set_jupyter_format('png')
 model_graph = draw_graph(model, input_size=(1, 3, 224, 224), expand_nested=True, save_graph=False)
+model_graph.visual_graph.render(filename="model_architecture", format="svg", view=True)
 model_graph.visual_graph
+
+!pip install cairosvg pillow
+from PIL import Image
+import cairosvg
+cairosvg.svg2png(url="model_architecture.svg", write_to="model_architecture.png", dpi=300)
 
 
 # ==================================================================
