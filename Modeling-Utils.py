@@ -1,3 +1,34 @@
+# ==================================================================
+#                                 5
+# ==================================================================
+!pip install graphviz
+!pip install git+https://github.com/mert-kurttutan/torchview.git
+from torchview import draw_graph
+import graphviz
+graphviz.set_jupyter_format('png')
+model_graph = draw_graph(model, input_size=(1, 3, 224, 224), expand_nested=True, save_graph=False)
+model_graph.visual_graph
+
+
+# ==================================================================
+#                                 4
+# ==================================================================
+!pip install torchinfo
+from torchinfo import summary
+summary(model=model,
+        # input_data=images,
+        input_size = (1,3,224,224),
+        col_names = ["input_size", "output_size", "num_params", "trainable", "params_percent"],
+        col_width=20,
+        row_settings=["var_names"],
+        depth = 1,
+        # device=device
+)
+
+
+# ==================================================================
+#                                 3
+# ==================================================================
 def format_time(t1, t2):
     elapsed_time = t2 - t1
     if elapsed_time < 60:
@@ -22,7 +53,9 @@ def format_time(t1, t2):
         return f"{days:.0f} days {hours:.0f} hours {minutes:.0f} minutes {seconds:.2f} seconds"
 
 
-def get_cuda_cores():
+# ==================================================================
+#                                 2
+# ==================================================================def get_cuda_cores():
     device = torch.cuda.current_device()
     compute_capability = torch.cuda.get_device_capability(device)
     cores_per_sm = {2: 32, 3: 192, 5: 128, 6: 64, 7: 64, 8: 64}  # cores per streaming multiprocessor
@@ -31,7 +64,9 @@ def get_cuda_cores():
     return cores
 
 
-
+# ==================================================================
+#                                 1
+# ==================================================================
 from typing import Any
 from argparse import Namespace
 import typing
