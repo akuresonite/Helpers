@@ -80,3 +80,14 @@ def copy_files_from_folders(name, source_folders, destination_folder):
     print(f'Total {total_files} files copies')
     for i in duplicate_files:
         print(i)
+
+
+def rename_folder(old_name, new_name):
+    if os.path.exists(old_name):
+        os.rename(old_name, new_name)
+        print(f"Renamed: '{old_name}' → '{new_name}'")
+    else:
+        print(f"Folder '{old_name}' does not exist.")
+        
+for old_name, new_name in zip(old_names, new_names):        
+    rename_folder(old_name, new_name)
