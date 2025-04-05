@@ -28,4 +28,5 @@ get_gpu_cores()
 
 
 
-# python <(curl -s https://raw.githubusercontent.com/akuresonite/Helpers/refs/heads/main/Gpu_cores.py)
+# curl -H 'Cache-Control: no-cache' -s "https://raw.githubusercontent.com/akuresonite/Helpers/main/Gpu_cores.py" | python
+
