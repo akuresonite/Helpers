@@ -28,4 +28,4 @@ get_gpu_cores()
 
 
 
-python <(curl -s https://raw.githubusercontent.com/akuresonite/Helpers/refs/heads/main/Gpu_cores.py)
+# python <(curl -s https://raw.githubusercontent.com/akuresonite/Helpers/refs/heads/main/Gpu_cores.py)
