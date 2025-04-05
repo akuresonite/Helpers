@@ -64,8 +64,8 @@ def get_gpu_cores():
             print(f"GPU {i}: {device.name}")
             print(f"  SM Count: {sm_count}")
             print(f"  Cores per SM: {cores_per_sm}")
-            print(f"  Total CUDA Cores: {total_cores}\n")
-            print(f"  Memory: {device.total_memory / (1024**3):.2f} GB")
+            print(f"  Total CUDA Cores: {total_cores}")
+            print(f"  Memory: {device.total_memory / (1024**3):.2f} GB\n")
     else:
         print("CUDA is not available.")
 
