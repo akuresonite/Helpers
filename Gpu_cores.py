@@ -25,3 +25,7 @@ def get_gpu_cores():
         print("CUDA is not available.")
 
 get_gpu_cores()
+
+
+
+python <(curl -s https://raw.githubusercontent.com/akuresonite/Helpers/refs/heads/main/Gpu_cores.py)
