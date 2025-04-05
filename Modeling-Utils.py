@@ -23,7 +23,7 @@ cairosvg.svg2png(url="model_architecture.svg", write_to="model_architecture.png"
 from torchinfo import summary
 summary(model=model,
         # input_data=images,
-        input_size = (1,3,224,224),
+        input_size = (1, 3, config.IMAGE_SIZE, config.IMAGE_SIZE),
         col_names = ["input_size", "output_size", "num_params", "trainable", "params_percent"],
         col_width=20,
         row_settings=["var_names"],
