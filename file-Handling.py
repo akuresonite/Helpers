@@ -91,3 +91,23 @@ def rename_folder(old_name, new_name):
         
 for old_name, new_name in zip(old_names, new_names):        
     rename_folder(old_name, new_name)
+
+
+
+def replace_line_in_file(filepath, target_line, new_line):
+    with open(filepath, 'r') as f:
+        lines = f.readlines()
+    with open(filepath, 'w') as f:
+        for line in lines:
+            if line.strip() == target_line.strip():
+                indent = len(line) - len(line.lstrip())
+                f.write(' ' * indent + new_line + '\n')
+            else:
+                f.write(line)
+
+
+replace_line_in_file(
+    "/scratch/23m1521/miniconda/lib/python3.12/site-packages/ignite/handlers/tqdm_logger.py", 
+    "from tqdm.autonotebook import tqdm", 
+    "from tqdm import tqdm, trange"
+)
