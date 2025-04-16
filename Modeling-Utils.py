@@ -1,5 +1,5 @@
 # ==================================================================
-#                                 5
+#                      Plots Model Architcture
 # ==================================================================
 !pip install graphviz
 !pip install git+https://github.com/mert-kurttutan/torchview.git
@@ -17,7 +17,7 @@ cairosvg.svg2png(url="model_architecture.svg", write_to="model_architecture.png"
 
 
 # ==================================================================
-#                                 4
+#                       Prints Model Summary
 # ==================================================================
 !pip install torchinfo
 from torchinfo import summary
@@ -32,6 +32,9 @@ summary(model=model,
 )
 
 
+# ==================================================================
+#                    Visulizes Image Batch
+# ==================================================================
 import matplotlib.pyplot as plt
 import torchvision.utils as vutils
 def plot_batch(batch, nrow=8, title='Batch Images'):
@@ -44,6 +47,9 @@ def plot_batch(batch, nrow=8, title='Batch Images'):
     plt.show()
 
 
+# ==================================================================
+#                       Prints GPU Cores
+# ==================================================================
 import torch
 def get_gpu_cores():
     if torch.cuda.is_available():
@@ -72,9 +78,15 @@ def get_gpu_cores():
 get_gpu_cores()
 
 
+# ==================================================================
+#                           Kill Kernal
+# ==================================================================
+import os, signal
+os.kill(os.getpid(), signal.SIGTERM)
+
 
 # ==================================================================
-#                                 3
+#                     Print Time in Human format
 # ==================================================================
 def format_time(t1, t2):
     elapsed_time = t2 - t1
@@ -101,18 +113,7 @@ def format_time(t1, t2):
 
 
 # ==================================================================
-#                                 2
-# ==================================================================def get_cuda_cores():
-    device = torch.cuda.current_device()
-    compute_capability = torch.cuda.get_device_capability(device)
-    cores_per_sm = {2: 32, 3: 192, 5: 128, 6: 64, 7: 64, 8: 64}  # cores per streaming multiprocessor
-    sm_count = torch.cuda.get_device_properties(device).multi_processor_count
-    cores = sm_count * cores_per_sm[compute_capability[0]]
-    return cores
-
-
-# ==================================================================
-#                                 1
+#                          Dot Dict
 # ==================================================================
 from typing import Any
 from argparse import Namespace
