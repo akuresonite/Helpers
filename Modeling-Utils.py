@@ -31,6 +31,32 @@ summary(model=model,
         # device=device
 )
 
+# ==================================================================
+#                        Version Info
+# ==================================================================
+!conda install conda-forge::watermark
+from watermark import watermark
+print(watermark(
+    author='Ashish',
+    # email='ashish@example.com',
+    current_date=True,
+    datename=True,
+    current_time=True,
+    iso8601=True,
+    timezone=True,
+    updated=True,
+    custom_time=None,
+    python=True,
+    # packages="torch,torchvision,numpy",
+    conda=True,
+    hostname=True,
+    machine=True,
+    watermark=False,
+    iversions=True,
+    gpu=True,
+    globals_=globals()
+))
+
 
 # ==================================================================
 #                    Visulizes Image Batch
