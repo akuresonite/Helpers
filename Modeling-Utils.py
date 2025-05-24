@@ -9,11 +9,25 @@ graphviz.set_jupyter_format('png')
 model_graph = draw_graph(model, input_size=(1, 3, 224, 224), expand_nested=True, save_graph=False)
 model_graph.visual_graph.render(filename="model_architecture", format="svg", view=True)
 model_graph.visual_graph
-
+# -----------------------------------
 !pip install cairosvg pillow
 from PIL import Image
 import cairosvg
 cairosvg.svg2png(url="model_architecture.svg", write_to="model_architecture.png", dpi=300)
+# -----------------------------------
+from torchview import draw_graph
+import graphviz
+from IPython.display import SVG
+graphviz.set_jupyter_format('png')
+draw_graph(
+    vae, 
+    # input_size=(1, 3, 256, 256), 
+    input_data=torch.randn(1, 3, 256, 256, device=device, dtype=vae.dtype),
+    expand_nested=True, 
+    save_graph=True, 
+    device=vae.device
+)
+SVG(filename='/home/IITB/ai-at-ieor/23m1521/ashish/MTP/Vaani/Img_Audio_Alignment/SD2_1_vae_arch.svg.svg')
 
 
 # ==================================================================
