@@ -111,3 +111,24 @@ replace_line_in_file(
     "from tqdm.autonotebook import tqdm", 
     "from tqdm import tqdm, trange"
 )
+
+
+import os
+import importlib.util
+def import_objects_from_path(file_path, object_names):
+    module_name = os.path.splitext(os.path.basename(file_path))[0]
+
+    spec = importlib.util.spec_from_file_location(module_name, file_path)
+    if spec is None:
+        raise ImportError(f"Cannot find spec for {file_path}")
+    
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
+    spec.loader.exec_module(module)
+
+    # Support both single string and list of names
+    if isinstance(object_names, str):
+        object_names = [object_names]
+    
+    objects = {name: getattr(module, name) for name in object_names}
+    return objects
